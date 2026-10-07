@@ -1,0 +1,60 @@
+=== SMALL SOCIAL NETWORK: 6 vertices, 6 edges ===
+
+--- Adjacency Matrix ---
+   A B C D E F 
+A  0 1 1 0 0 0 
+B  1 0 0 1 1 0 
+C  1 0 0 0 0 1 
+D  0 1 0 0 0 0 
+E  0 1 0 0 0 1 
+F  0 0 1 0 1 0 
+
+--- Adjacency List ---
+A -> B C 
+B -> A D E 
+C -> A F 
+D -> B 
+E -> B F 
+F -> C E 
+
+--- BFS from A ---
+Matrix: A B C D E F   [operations = 36]
+List  : A B C D E F   [operations = 12]
+
+--- DFS from A ---
+Matrix: A B D E F C   [operations = 36]
+List  : A B D E F C   [operations = 12]
+
+--- b) Vertex search (traversal-based, starting at A) ---
+Search 'F':
+  BFS Matrix: FOUND, operations = 18
+  BFS List  : FOUND, operations = 7
+  DFS Matrix: FOUND, operations = 19
+  DFS List  : FOUND, operations = 7
+Search 'Z':
+  BFS Matrix: NOT FOUND, operations = 36
+  BFS List  : NOT FOUND, operations = 12
+  DFS Matrix: NOT FOUND, operations = 36
+  DFS List  : NOT FOUND, operations = 12
+
+--- Edge-checking operations ---
+Edge A-B: Matrix=yes (1 op) | List=yes (1 op)
+Edge A-F: Matrix=no (1 op) | List=no (2 op)
+Edge E-F: Matrix=yes (1 op) | List=yes (2 op)
+Edge D-F: Matrix=no (1 op) | List=no (1 op)
+
+--- c) Space (bytes) ---
+Matrix: 36 bytes (n*n*1)
+List  : 240 bytes (n pointers + 2E nodes)
+
+--- Timing, small network (average of 200000 runs, microseconds) ---
+BFS Matrix: 0.2129 us | BFS List: 0.1631 us
+DFS Matrix: 0.1980 us | DFS List: 0.1527 us
+
+=== LARGER SPARSE NETWORK: 1000 vertices, 2000 edges (density 0.40%) ===
+BFS operations: Matrix=1000000 | List=4000
+DFS operations: Matrix=1000000 | List=4000
+Edge check 0-500 (absent): Matrix=1 op | List=4 op
+Space: Matrix=1000000 bytes | List=72000 bytes
+Timing BFS (avg of 2000 runs, us): Matrix=3024.82 | List=19.16
+Timing DFS (avg of 2000 runs, us): Matrix=3641.92 | List=39.01
